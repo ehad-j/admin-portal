@@ -9,6 +9,7 @@ if (isset($_SESSION["beginSession"])&&$_SESSION["beginSession"] == "ok"){
     if (isset($_SESSION["roles_id"]) && $_SESSION["roles_id"]=="2"){
         echo "<html>\r\n Super Admin</html>";
         echo '<a href=../userdata.php>View/Add/Edit Users</a>';
+        echo '<a href=../roledata.php>View/Add/Edit Roles</a>';
     }
 }
 else{
