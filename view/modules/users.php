@@ -69,7 +69,7 @@
                     </div>
                     <div class="form-group">
                         <label for="editRoleID">Role ID</label>
-                        <input type="number" class="form-control" name="editRoles" id="roles_id" placeholder="Edit Role" required>
+                        <input type="number" class="form-control" name="editRoles" id="roles_id" placeholder="Edit Role">
                     </div>
 
             </div>

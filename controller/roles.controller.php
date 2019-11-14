@@ -22,7 +22,20 @@ class RolesController{
             $data = array("roles_id"=>$_POST["editRolesID"], "roles_name"=>$_POST["editRolesName"]);
             $response = ModelRoles::mdlEditRoles($table, $data);
             if($response == "ok"){
-                header("Refresh:0");
+                echo '<script>window.location = "../roledata.php"</script>';
+            }
+        }
+
+    }
+    static public function ctrDeleteRoles(){
+        if(isset($_POST["deleteRolesID"])) {
+
+
+            $table = "roles";
+            $data = array("roles_id" => $_POST["deleteRolesID"], "roles_name" => $_POST["deleteRolesName"]);
+            $response = ModelRoles::mdlDeleteRoles($table, $data);
+            if($response == "ok"){
+                echo '<script>window.location = "../roledata.php"</script>';
             }
         }
 

@@ -4,6 +4,7 @@
         <th>Role ID</th>
         <th>Role Name</th>
         <th>Edit</th>
+        <th>Delete</th>
     </tr>
     <?php
     $item = null;
@@ -19,6 +20,11 @@
             <td>
                 <button type="button" class="btn btn-primary editbtn" data-toggle="modal" data-target="#editmodal">
                     Edit
+                </button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger deletebtn" data-toggle="modal" data-target="#deletemodal">
+                    Delete
                 </button>
             </td>
         </tr>
@@ -96,6 +102,41 @@
     </div>
 </div>
 
+<!-- DELETE POP UP FORM (Bootstrap MODAL) -->
+<div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form role="form" method="POST">
+                <div class="form-group">
+                    <label for="deleteRolesID">User ID</label>
+                    <input type="text" class="form-control" name="deleteRolesID" id="roles_id1" readonly>
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="deleteRolesName">Role Name</label>
+                        <input type="text" class="form-control" name="deleteRolesName" id="roles_name1" readonly>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </div>
+                <?php
+                $deleteRole = new RolesController();
+                $deleteRole -> ctrDeleteRoles();
+                ?>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -117,5 +158,18 @@
             $('#roles_id').val(data[0]);
             $('#roles_name').val(data[1]);
         });
+    });
+</script>
+<script>
+    $('.deletebtn').on('click',function() {
+        $('#deletemodal').modal('show');
+        $tr = $(this).closest('tr');
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+
+        console.log(data);
+        $('#roles_id1').val(data[0]);
+        $('#roles_name1').val(data[1]);
     });
 </script>

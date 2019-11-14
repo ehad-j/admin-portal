@@ -46,5 +46,21 @@ class ModelRoles{
         $stmt -> close();
         $stmt = null;
     }
+    static public function mdlDeleteRoles($table, $data){
+        $stmt =Connection::connector()->prepare("DELETE FROM $table WHERE roles_id = :roles_id");
+        $stmt->bindParam(":roles_id", $data["roles_id"], PDO::PARAM_STR);
+        if($stmt -> execute()){
+
+            return "ok";
+
+        }else{
+
+            return "error";
+
+        }
+
+        $stmt -> close();
+        $stmt = null;
+    }
 }
 ?>

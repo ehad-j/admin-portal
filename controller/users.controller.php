@@ -42,7 +42,7 @@ class UserController{
             );
             $response = ModelUsers::mdlEditUser($table,$data);
             if($response == "ok"){
-                header("Refresh:0");
+                echo '<script>window.location = "../userdata.php"</script>';
             }
         }
         }
