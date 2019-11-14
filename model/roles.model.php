@@ -28,5 +28,23 @@ class ModelRoles{
             return $stmt -> fetchAll();
         }
     }
+    static public function mdlEditRoles($table, $data){
+        $stmt = Connection::connector()->prepare("UPDATE $table SET roles_name = :roles_name WHERE roles_id = :roles_id");
+        $stmt -> bindParam(":roles_name", $data["roles_name"], PDO::PARAM_STR);
+        $stmt -> bindParam(":roles_id", $data["roles_id"], PDO::PARAM_STR);
+
+        if($stmt -> execute()){
+
+            return "ok";
+
+        }else{
+
+            return "error";
+
+        }
+
+        $stmt -> close();
+        $stmt = null;
+    }
 }
 ?>
