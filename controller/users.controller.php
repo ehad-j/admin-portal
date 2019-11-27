@@ -46,6 +46,19 @@ class UserController{
             }
         }
         }
+    static public function ctrCreateUser(){
+        if(isset($_POST["createUserID"])){
+            $table = "users";
+            $data = array("email" => $_POST["createUserID"],
+                "first_name"=>$_POST["createFirst"],
+                "last_name"=>$_POST["createLast"],
+                "pass"=>$_POST["createPass"]);
+            $response = ModelUsers::mdlCreateUser($table, $data);
+            if($response == "ok") {
+                header("Refresh:0");
+            }
+        }
+    }
 
 
 

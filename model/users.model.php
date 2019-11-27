@@ -38,4 +38,21 @@
             $stmt -> close();
             $stmt = null;
         }
+        static public function mdlCreateUser($table, $data){
+            $stmt = Connection::connector()->prepare("INSERT INTO $table(email, first_name, last_name, pass) VALUES (:email, :first_name, :last_name, :pass)");
+            $stmt -> bindParam(":email", $data["email"], PDO::PARAM_STR);
+            $stmt -> bindParam(":first_name", $data["first_name"], PDO::PARAM_STR);
+            $stmt -> bindParam(":last_name", $data["last_name"], PDO::PARAM_STR);
+            $stmt -> bindParam(":pass", $data["pass"], PDO::PARAM_STR);
+
+            if($stmt -> execute()){
+
+                return "ok";
+
+            }else{
+
+                return "error";
+
+            }
+        }
     }

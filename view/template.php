@@ -3,7 +3,7 @@ session_start();
 ?>
 
 <?php
-if (isset($_SESSION["beginSession"])&&$_SESSION["beginSession"] == "ok"){
+if (isset($_SESSION["beginSession"])&&$_SESSION["beginSession"] == "ok"&&$_SESSION["roles_id"]!=NULL){
     echo "<h4>Logged in \r\n</h4>";
     echo ' ';
     if (isset($_SESSION["roles_id"]) && $_SESSION["roles_id"]=="2"){
