@@ -8,7 +8,8 @@ if (isset($_SESSION["roles_id"]) && $_SESSION["roles_id"]=="2"){
     ?>
 
     <a href=../userdata.php>View/Add/Edit Users</a><br>
-    <a href=../roledata.php>View/Add/Edit Roles</a>
+    <a href=../roledata.php>View/Add/Edit Roles</a><br>
+    <a href="../../linkdata.php">View/Add/Edit Links</a>
 <?php
 }
 ?>
