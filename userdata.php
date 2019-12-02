@@ -12,6 +12,9 @@ require_once "model/roles.model.php";
 if (isset($_SESSION["beginSession"])&&$_SESSION["beginSession"] == "ok" && $_SESSION["roles_id"]=="2"){
     include "view/modules/users.php";
 }
+else if (isset($_SESSION["beginSession"])&&$_SESSION["beginSession"] == "ok" && $_SESSION["roles_id"]!=NULL){
+    include "view/modules/home.php";
+}
 else{
     include "view/modules/login.php";
 }

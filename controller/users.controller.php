@@ -4,6 +4,7 @@ class UserController{
     static public function ctrUserLogin(){
         if(isset($_POST["aUser"]) && isset($_POST["aPassword"])){ // If email and password is not null
             $table = "users";
+            $table1 = "roles";
             $item = "email";
             $pass = $_POST["aPassword"];
             $value = $_POST["aUser"];
@@ -14,6 +15,7 @@ class UserController{
                 $_SESSION["first_name"] = $response["first_name"];
                 $_SESSION["last_name"] = $response["last_name"];
                 $_SESSION["user_id"] = $response["user_id"];
+                $data = array("roles_id" => $response["roles_id"]);
                 echo '<script>
 							window.location = "index.php";
 						</script>';
