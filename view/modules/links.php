@@ -13,7 +13,7 @@
         $item = null;
         $value = null;
         $links = new LinksController();
-        $links= LinksController::ctrShowRoles($item, $value);
+        $links= LinksController::ctrShowLinks($item, $value);
 
         foreach($links as $key => $value){
             ?>

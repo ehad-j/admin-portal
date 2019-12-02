@@ -4,6 +4,18 @@ echo ' ';
 ?>
     <h4>Welcome <?php echo $_SESSION["first_name"]; echo ' '; echo $_SESSION["last_name"]; ?></h4>
 <?php
+
+if (isset($_SESSION["roles_id"]) && $_SESSION["roles_id"]!= NULL){
+    $item = "roles_id";
+    $value = $_SESSION["roles_id"];
+    $links = new LinksController();
+    $links = LinksController::ctrShowLinks($item, $value);
+    foreach($links as $key => $value){
+        ?>
+        <a href="<?php echo $value["link_url"]; ?>"><?php echo $value["link_name"]; ?></a><br>
+        <?php
+    }
+}
 if (isset($_SESSION["roles_id"]) && $_SESSION["roles_id"]=="2"){
     ?>
 

@@ -3,9 +3,18 @@ require_once "connection.php";
 
 class ModelLinks{
     static public function modShowLinks($table, $item, $value){
-        $stmt =  Connection::connector()->prepare("SELECT * FROM $table");
-        $stmt -> execute();
-        return $stmt -> fetchAll();
+        if($value != NULL && $item != NULL){
+            $stmt = Connection::connector()->prepare("SELECT * FROM $table WHERE $item = $value OR $item = 1");
+            $stmt -> execute();
+            return $stmt -> fetchAll();
+        }
+        else {
+
+
+            $stmt = Connection::connector()->prepare("SELECT * FROM $table");
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
     }
     static public function mdlEditLinks($table, $data){
         $stmt = Connection::connector()->prepare("UPDATE $table SET link_url = :link_url, link_name = :link_name, roles_id = :roles_id WHERE link_id = :link_id");
