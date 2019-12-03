@@ -46,7 +46,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Roles</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Links</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -81,6 +81,52 @@
                 <?php
                 $editLinks = new LinksController();
                 $editLinks -> ctrEditLinks();
+                ?>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- DELETE MODAL -->
+<div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Links</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form role="form" method="POST">
+                <div class="form-group">
+                    <label for="deleteLinkID">Link ID</label>
+                    <input type="text" class="form-control" name="deleteLinkID" id="link_id1" readonly required>
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="deleteLinkURL">Link URL</label>
+                        <input type="text" class="form-control" name="deleteLinkURL" id="link_url1" readonly required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="deleteLinkName">Link Title</label>
+                        <input type="text" class="form-control" name="deleteLinkName" id="link_name1" readonly required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="deleteRolesID">Role ID</label>
+                        <input type="number" class="form-control" name="deleteRolesID" id="roles_id1" readonly required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+                <?php
+                $deleteLinks = new LinksController();
+                $deleteLinks -> ctrDeleteLinks();
                 ?>
             </form>
         </div>

@@ -16,7 +16,22 @@ class LinksController{
             );
             $response = ModelLinks::mdlEditLinks($table, $data);
             if($response == "ok"){
-                header("Refresh:0");
+                echo '<script>window.location="linkdata.php"</script>';
+            }
+        }
+    }
+    static public function ctrDeleteLinks(){
+        if(isset($_POST["deleteLinkID"])){
+            $table = "links";
+            $data = array(
+                "link_id" => $_POST["deleteLinkID"],
+                "link_url" => $_POST["deleteLinkURL"],
+                "link_name" => $_POST["deleteLinkName"],
+                "roles_id" => $_POST["deleteRolesID"]
+            );
+            $response = ModelLinks::mdlDeleteLinks($table, $data);
+            if($response == "ok"){
+                echo '<script>window.location="linkdata.php"</script>';
             }
         }
     }

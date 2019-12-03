@@ -35,5 +35,21 @@ class ModelLinks{
         $stmt -> close();
         $stmt = null;
     }
+    static public function mdlDeleteLinks($table, $data){
+        $stmt = Connection::connector()->prepare("DELETE FROM $table WHERE link_id = :link_id");
+        $stmt -> bindParam(":link_id", $data["link_id"], PDO::PARAM_STR);
+        if($stmt -> execute()){
+
+            return "ok";
+
+        }else{
+
+            return "error";
+
+        }
+
+        $stmt -> close();
+        $stmt = null;
+    }
 }
 ?>
