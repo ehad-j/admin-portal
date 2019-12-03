@@ -51,5 +51,23 @@ class ModelLinks{
         $stmt -> close();
         $stmt = null;
     }
+    static public function mdlCreateLinks($table, $data){
+        $stmt = Connection::connector()->prepare("INSERT INTO $table(link_url, link_name, roles_id) VALUES (:link_url, :link_name, :roles_id)");
+        $stmt -> bindParam(":link_url", $data["link_url"], PDO::PARAM_STR);
+        $stmt -> bindParam(":link_name", $data["link_name"], PDO::PARAM_STR);
+        $stmt -> bindParam(":roles_id", $data["roles_id"], PDO::PARAM_STR);
+        if($stmt -> execute()){
+
+            return "ok";
+
+        }else{
+
+            return "error";
+
+        }
+
+        $stmt -> close();
+        $stmt = null;
+    }
 }
 ?>

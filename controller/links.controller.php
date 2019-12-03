@@ -35,5 +35,19 @@ class LinksController{
             }
         }
     }
+    static public function ctrCreateLinks(){
+        if(isset($_POST["createLinkURL"])){
+            $table = "links";
+            $data = array(
+                "link_url" => $_POST["createLinkURL"],
+                "link_name" => $_POST["createLinkName"],
+                "roles_id" => $_POST["createRolesID"]
+            );
+            $response = ModelLinks::mdlCreateLinks($table, $data);
+            if($response == "ok"){
+                echo '<script>window.location="linkdata.php"</script>';
+            }
+        }
+    }
 }
 ?>

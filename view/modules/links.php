@@ -86,6 +86,9 @@
         </div>
     </div>
 </div>
+<button type="button" class="btn btn-primary addbttn" data-toggle="modal" data-target="#addmodal">
+    Add Link
+</button>
 
 <!-- DELETE MODAL -->
 <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -127,6 +130,48 @@
                 <?php
                 $deleteLinks = new LinksController();
                 $deleteLinks -> ctrDeleteLinks();
+                ?>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ADD MODAL -->
+<div class="modal fade" id="addmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Links</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form role="form" method="POST">
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="createLinkURL">Link URL</label>
+                        <input type="text" class="form-control" name="createLinkURL" id="link_url" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="createLinkName">Link Title</label>
+                        <input type="text" class="form-control" name="createLinkName" id="link_name" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="createRolesID">Role ID</label>
+                        <input type="number" class="form-control" name="createRolesID" id="roles_id">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+                <?php
+                $createLinks = new LinksController();
+                $createLinks -> ctrCreateLinks();
                 ?>
             </form>
         </div>
