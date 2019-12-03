@@ -9,7 +9,7 @@ class UserController{
             $pass = $_POST["aPassword"];
             $value = $_POST["aUser"];
             $response = ModelUsers::modShowUsers($table, $item, $value); // Retrieving user of that email
-            if($response["email"]==$value && $response["pass"] == $pass){ // If input matches with database, begin session, otherwise output error
+            if($response["email"]==$value && password_verify($pass, $response["pass"])){ // If input matches with database, begin session, otherwise output error
                 $_SESSION["beginSession"] = "ok";
                 $_SESSION["roles_id"] = $response["roles_id"];
                 $_SESSION["first_name"] = $response["first_name"];
@@ -51,10 +51,11 @@ class UserController{
     static public function ctrCreateUser(){
         if(isset($_POST["createUserID"])){
             $table = "users";
+            $pass = password_hash($_POST["createPass"], PASSWORD_DEFAULT);
             $data = array("email" => $_POST["createUserID"],
                 "first_name"=>$_POST["createFirst"],
                 "last_name"=>$_POST["createLast"],
-                "pass"=>$_POST["createPass"]);
+                "pass"=>$pass);
             $response = ModelUsers::mdlCreateUser($table, $data);
             if($response == "ok") {
                 header("Refresh:0");
