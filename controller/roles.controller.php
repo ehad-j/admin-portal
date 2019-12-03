@@ -7,7 +7,7 @@ class RolesController{
             $response = ModelRoles::mdlAddRoles($table,$data);
 
             if($response == "ok"){
-                header("Refresh:0");
+                echo '<script>window.location = "../roledata.php"</script>';
             }
         }
     }
