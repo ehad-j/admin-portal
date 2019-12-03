@@ -1,13 +1,13 @@
--- MySQL dump 10.13  Distrib 8.0.18, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.25, for Win64 (x86_64)
 --
 -- Host: localhost    Database: admin_portal
 -- ------------------------------------------------------
--- Server version	8.0.18
+-- Server version	8.0.15
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -21,18 +21,18 @@
 
 DROP TABLE IF EXISTS `links`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `links` (
   `link_id` int(11) NOT NULL AUTO_INCREMENT,
   `link_url` varchar(45) NOT NULL,
   `link_name` varchar(45) NOT NULL,
-  `roles_id` int(11) NOT NULL,
+  `roles_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`link_id`),
   UNIQUE KEY `link_id_UNIQUE` (`link_id`),
   UNIQUE KEY `link_url_UNIQUE` (`link_url`),
   KEY `roles_id_fk_links_idx` (`roles_id`),
   CONSTRAINT `roles_id_fk_links` FOREIGN KEY (`roles_id`) REFERENCES `roles` (`roles_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `links` (
 
 LOCK TABLES `links` WRITE;
 /*!40000 ALTER TABLE `links` DISABLE KEYS */;
-INSERT INTO `links` VALUES (1,'https://globalmanage.com','Manage User Accounts P',1),(2,'https://globalassignroles.com','Assign Roles',1),(3,'https://globalhelpdesk.com','Help Desk',1);
+INSERT INTO `links` VALUES (1,'https://globalmanage.com','Manage User Accounts P',1),(2,'https://globalassignroles.com','Assign Roles',1),(3,'https://globalhelpdesk.com','Help Desk',1),(4,'https://financereports.com','Finance Reports',3),(6,'PLEASE','pleasework',2);
 /*!40000 ALTER TABLE `links` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -51,7 +51,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `roles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `roles` (
   `roles_id` int(11) NOT NULL AUTO_INCREMENT,
   `roles_name` varchar(45) NOT NULL,
@@ -77,7 +77,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `email` varchar(45) NOT NULL,
   `pass` varchar(256) NOT NULL,
@@ -90,7 +90,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `user_id_UNIQUE` (`user_id`),
   KEY `role_idx` (`roles_id`),
   CONSTRAINT `role` FOREIGN KEY (`roles_id`) REFERENCES `roles` (`roles_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +99,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('test@gmail.com','password',2,'Eddie','Jarral',1),('employee1@gmail.com','password',1,'John','Jones',2),('ayyy@gmail.com','password',6,'please','work',3),('testingpleasework@gmail.com','password',NULL,'john','smith',4);
+INSERT INTO `users` VALUES ('test@gmail.com','$2y$10$vHq2yY7TWu4cX6bKGY4EoOtUwczsTczoJU5u2XaBfqekGrqY36VZ.',2,'Eddie','Jarral',7),('employee1@gmail.com','$2y$10$3ARGxXhN8LtS8P06yHYiFuubWrpWYVT.DD92PlACbRVx8NTchBjIm',3,'Bob','Jones',8);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -120,4 +120,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-02  4:08:00
+-- Dump completed on 2019-12-02 20:08:55
