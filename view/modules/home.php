@@ -7,7 +7,7 @@
 <body id="page-top">
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-    <a class="navbar-brand mr-1" href="index.html">Admin Portal</a>
+    <a class="navbar-brand mr-1" href="index.php">Admin Portal</a>
 
     <h2 style='color: white;' class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
       <?php echo $_SESSION["first_name"]; echo ' '; echo $_SESSION["last_name"]; ?>
@@ -17,6 +17,9 @@
     <div class="navbar-nav ml-auto ml-md-0">
         <img width=30 src="https://image.flaticon.com/icons/svg/172/172163.svg" alt="">
     </div>
+      <div>
+          <a href="../../logout.php"><i style="font-size: 2em; color:rgba(255,255,255,0.9);margin-left: 15px;" class="fas fa-sign-out-alt"></i></a>
+      </div>
   </nav>
   <div id="wrapper">
         <ul class="sidebar navbar-nav">
