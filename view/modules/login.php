@@ -86,7 +86,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="createUserID">Email</label>
-                        <input type="text" class="form-control" name="createUserID" id="UserID" placeholder="Email" required>
+                        <input type="email" class="form-control" name="createUserID" id="UserID" placeholder="Email" required>
                     </div>
                     <div class="form-group">
                         <label for="createFirst">First Name</label>

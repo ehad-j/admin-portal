@@ -43,8 +43,43 @@ class UserController{
                 "user_id"=>$_POST["editUserID"]
             );
             $response = ModelUsers::mdlEditUser($table,$data);
-            if($response == "ok"){
-                echo '<script>window.location = "../userdata.php"</script>';
+            if ($response == "ok") {
+
+
+                echo '<script>
+		swal({
+				type: "success",
+				title: "User edited successfully!",
+				icon: "success",
+				showConfirmButton: true,
+				confirmButtonText: "Close",
+				closeOnConfirm: false
+
+				}).then(function(){
+				    window.location="../userdata.php";
+				});
+
+
+		</script>';
+
+            }
+            else{
+                echo '<script>
+		swal({
+				type: "error",
+				title: "Error, user could not be edited!",
+				text: "Make sure inputs are valid, and avoid duplicate users",
+				icon: "error",
+				showConfirmButton: true,
+				confirmButtonText: "Close",
+				closeOnConfirm: false
+
+				}).then(function(){
+				    window.location="../userdata.php";
+				});
+
+
+		</script>';
             }
         }
         }
@@ -57,8 +92,43 @@ class UserController{
                 "last_name"=>$_POST["createLast"],
                 "pass"=>$pass);
             $response = ModelUsers::mdlCreateUser($table, $data);
-            if($response == "ok") {
-                header("Refresh:0");
+            if ($response == "ok") {
+
+
+                echo '<script>
+		swal({
+				type: "success",
+				title: "Registered successfully!",
+				icon: "success",
+				showConfirmButton: true,
+				confirmButtonText: "Close",
+				closeOnConfirm: false
+
+				}).then(function(){
+				    window.location="../index.php";
+				});
+
+
+		</script>';
+
+            }
+            else{
+                echo '<script>
+		swal({
+				type: "error",
+				title: "Error, could not be registered!",
+				text: "User may already exist, or invalid input",
+				icon: "error",
+				showConfirmButton: true,
+				confirmButtonText: "Close",
+				closeOnConfirm: false
+
+				}).then(function(){
+				    window.location="../index.php";
+				});
+
+
+		</script>';
             }
         }
     }
