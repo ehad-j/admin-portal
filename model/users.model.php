@@ -59,6 +59,22 @@
             $stmt -> close();
             $stmt = null;
         }
+        static public function mdlDeleteUser($table, $data){
+            $stmt = Connection::connector()->prepare("DELETE FROM $table WHERE user_id = :user_id");
+            $stmt -> bindParam(":user_id", $data["user_id"], PDO::PARAM_STR);
+            if($stmt -> execute()){
+
+                return "ok";
+
+            }else{
+
+                return "error";
+
+            }
+            $stmt -> close();
+            $stmt = null;
+
+        }
         static public function modGetUsrRole($table, $data){
             $stmt = Connection::connector()->prepare("SELECT roles_name FROM roles WHERE roles_id = :roles_id");
             $stmt->bindParam(":roles_id", $data["roles_id"],PDO::PARAM_STR);

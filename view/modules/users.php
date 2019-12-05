@@ -106,7 +106,8 @@
             <td><?php echo $value["roles_id"]; ?></td>
             <td>
 
-              <i style='cursor: pointer; margin: 0 10px;' class='fas fa-edit editbtn' data-toggle="modal" data-target="#editmodal"></i>
+                <i style='cursor: pointer; margin: 0 10px;' class='fas fa-edit editbtn' data-toggle="modal" data-target="#editmodal"></i>
+                <i style='cursor: pointer; margin: 0 10px;' class='fas fa-trash deletebtn' data-toggle="modal" data-target="#deletemodal"></i>
 
             </td>
           </tr>
@@ -115,7 +116,11 @@
         ?>
           <div class="">
             <h2 style='float: left;'>User Details</h2>
+              <button style='float: right;' type="button" class="btn btn-default addbttn" data-toggle="modal" data-target="#addmodal">
+                  <i style='font-size: 2em;'class='fas fa-plus-square'></i>
+              </button>
           </div>
+
 
         </table>
 
@@ -165,6 +170,97 @@
             </div>
           </div>
         </div>
+          <!-- ADD BOOTSTRAP MODAL -->
+          <div class="modal fade" id="addmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content  reg-form">
+                      <div class="modal-header">
+                          <h5 style='font-size: 1.2rem;' class="modal-title" id="exampleModalLabel">Register</h5>
+                          <button style='width: 12%; margin: 0; padding: 0' type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <i class="fas fa-times"></i>
+                          </button>
+                      </div>
+                      <form role="form" method="POST">
+                          <div class="modal-body">
+                              <div class="form-group">
+                                  <label for="createUserID">Email</label>
+                                  <input type="email" class="form-control" name="createUserID" id="UserID" placeholder="Email" required>
+                              </div>
+                              <div class="form-group">
+                                  <label for="createFirst">First Name</label>
+                                  <input type="text" class="form-control" name="createFirst" id="FirstName" placeholder="First Name" required>
+                              </div>
+                              <div class="form-group">
+                                  <label for="createLast">Last Name</label>
+                                  <input type="text" class="form-control" name="createLast" id="LastName" placeholder="Last Name" required>
+                              </div>
+                              <div class="form-group">
+                                  <label for="createPass">Password</label>
+                                  <input type="password" class="form-control" name="createPass" id="Password" placeholder="Password" required>
+                              </div>
+                              <div class="form-group">
+                                  <label for="confPass">Password</label>
+                                  <input type="password" class="form-control" name="confPass" id="confPassword" placeholder="Confirm Password" required>
+                              </div>
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-primary">Create User</button>
+                          </div>
+                          <?php
+                          $register = new UserController();
+                          $register -> ctrSuCreateUser();
+                          ?>
+                      </form>
+                  </div>
+              </div>
+          </div>
+          <!-- DELETE BOOTSRAP MODAL -->
+          <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete?</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <form role="form" method="POST">
+                          <div class="modal-body">
+                              <div class="form-group">
+                                  <label for="deleteUserID">User ID</label>
+                                  <input type="text" class="form-control" name="deleteUserID" id="user_id1" readonly required>
+                              </div>
+                              <div class="form-group">
+                                  <label for="deleteFirst">First Name</label>
+                                  <input type="text" class="form-control" name="deleteFirst" id="first_name1" readonly required>
+                              </div>
+                              <div class="form-group">
+                                  <label for="deleteLast">Last Name</label>
+                                  <input type="text" class="form-control" name="deleteLast" id="last_name1" readonly required>
+                              </div>
+                              <div class="form-group">
+                                  <label for="deleteEmail">Email</label>
+                                  <input type="email" class="form-control" name="deleteEmail" id="email1" readonly required>
+                              </div>
+                              <div class="form-group">
+                                  <label for="deleteRolesID">Role ID</label>
+                                  <input type="number" class="form-control" name="deleteRoles" id="roles_id1" readonly>
+                              </div>
+
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-danger">Delete</button>
+                          </div>
+                          <?php
+                          $editUser = new UserController();
+                          $editUser -> ctrDeleteUser();
+                          ?>
+                      </form>
+                  </div>
+              </div>
+          </div>
       </div>
     </div>
   </div>
@@ -194,4 +290,22 @@
       $('#roles_id').val(data[4]);
     });
   });
+</script>
+<script>
+    $(document).ready(function() {
+        $('.deletebtn').on('click', function() {
+            $('#deletemodal').modal('show');
+            $tr = $(this).closest('tr');
+            var data = $tr.children("td").map(function() {
+                return $(this).text();
+            }).get();
+
+            console.log(data);
+            $('#user_id1').val(data[0]);
+            $('#first_name1').val(data[1]);
+            $('#last_name1').val(data[2]);
+            $('#email1').val(data[3]);
+            $('#roles_id1').val(data[4]);
+        });
+    });
 </script>

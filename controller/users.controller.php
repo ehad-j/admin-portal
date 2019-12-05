@@ -132,6 +132,108 @@ class UserController{
             }
         }
     }
+    static public function ctrSuCreateUser(){
+        if(isset($_POST["createUserID"])){
+            $table = "users";
+            $pass = password_hash($_POST["createPass"], PASSWORD_DEFAULT);
+            $data = array("email" => $_POST["createUserID"],
+                "first_name"=>$_POST["createFirst"],
+                "last_name"=>$_POST["createLast"],
+                "pass"=>$pass);
+            $response = ModelUsers::mdlCreateUser($table, $data);
+            if ($response == "ok") {
+
+
+                echo '<script>
+		swal({
+				type: "success",
+				title: "Registered successfully!",
+				icon: "success",
+				showConfirmButton: true,
+				confirmButtonText: "Close",
+				closeOnConfirm: false
+
+				}).then(function(){
+				    window.location="../userdata.php";
+				});
+
+
+		</script>';
+
+            }
+            else{
+                echo '<script>
+		swal({
+				type: "error",
+				title: "Error, could not be registered!",
+				text: "User may already exist, or invalid input",
+				icon: "error",
+				showConfirmButton: true,
+				confirmButtonText: "Close",
+				closeOnConfirm: false
+
+				}).then(function(){
+				    window.location="../userdata.php";
+				});
+
+
+		</script>';
+            }
+        }
+    }
+    static public function ctrDeleteUser(){
+        if(isset($_POST["deleteUserID"])){
+            $table = "users";
+            $data = array(
+                "user_id" => $_POST["deleteUserID"],
+                "email" => $_POST["deleteEmail"],
+                "roles_id" => $_POST["deleteRolesID"],
+                "first_name" => $_POST["deleteFirst"],
+                "last_name" => $_POST["deleteLast"]
+            );
+            $response = ModelUsers::mdlDeleteUser($table, $data);
+            if ($response == "ok") {
+
+
+                echo '<script>
+		swal({
+				type: "success",
+				title: "Deleted successfully!",
+				icon: "success",
+				showConfirmButton: true,
+				confirmButtonText: "Close",
+				closeOnConfirm: false
+
+				}).then(function(){
+				    window.location="../userdata.php";
+				});
+
+
+		</script>';
+
+            }
+            else{
+                echo '<script>
+		swal({
+				type: "error",
+				title: "Error, could not be deleted!",
+				text: "Make sure data has not already been deleted, or user is not a Super Admin.",
+				icon: "error",
+				showConfirmButton: true,
+				confirmButtonText: "Close",
+				closeOnConfirm: false
+
+				}).then(function(){
+				    window.location="../userdata.php";
+				});
+
+
+		</script>';
+            }
+
+
+        }
+    }
 
 
 
