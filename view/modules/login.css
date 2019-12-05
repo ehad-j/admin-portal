@@ -22,7 +22,7 @@ input:focus{
   outline: none;
   border-bottom: 2px solid white;
 }
-button {
+button:not(.swal-button.swal-button--confirm) {
   margin: 20px;
   font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
   font-size: 1em;

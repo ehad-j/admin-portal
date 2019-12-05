@@ -22,7 +22,7 @@ class ModelRoles{
             return $stmt -> fetch();
         }
         else{
-            $stmt =  Connection::connector()->prepare("SELECT * FROM $table WHERE roles_id != 1");
+            $stmt =  Connection::connector()->prepare("SELECT * FROM $table");
             $stmt -> execute();
 
             return $stmt -> fetchAll();

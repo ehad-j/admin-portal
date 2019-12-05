@@ -11,7 +11,7 @@
                 return $stmt -> fetch();
             }
             else{
-                $stmt =  Connection::connector()->prepare("select email, users.roles_id, first_name, last_name, user_id, roles.roles_name from users,roles where users.roles_id = roles.roles_id ");
+                $stmt =  Connection::connector()->prepare("select * from users left join roles on users.roles_id = roles.roles_id ");
                 $stmt -> execute();
 
                 return $stmt -> fetchAll();
