@@ -256,6 +256,7 @@ class UserController{
 		swal({
 				type: "success",
 				title: "Password changed sucessfully!",
+				text: "Please logout and login again to confirm changes.",
 				icon: "success",
 				showConfirmButton: true,
 				confirmButtonText: "Close",
@@ -289,25 +290,10 @@ class UserController{
                 }
 
             }
-            else{
-                echo '<script>
-		swal({
-				type: "error",
-				title: "Error, password could not be changed",
-				text: "Incorrect password",
-				icon: "error",
-				showConfirmButton: true,
-				confirmButtonText: "Close",
-				closeOnConfirm: false
-
-				}).then(function(){
-				    window.location.href=window.location.href;
-				});
 
 
-		</script>';
-            }
         }
+
 
     }
     static public function ctrSuChangePassword(){

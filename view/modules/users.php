@@ -203,7 +203,7 @@
               <div class="modal-dialog" role="document">
                   <div class="modal-content  reg-form">
                       <div class="modal-header">
-                          <h5 style='font-size: 1.2rem;' class="modal-title" id="exampleModalLabel">Register</h5>
+                          <h5 style='font-size: 1.2rem;' class="modal-title" id="exampleModalLabel">Create New User</h5>
                           <button style='width: 12%; margin: 0; padding: 0' type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <i class="fas fa-times"></i>
                           </button>
@@ -232,7 +232,7 @@
                               </div>
                           </div>
                           <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                               <button type="submit" class="btn btn-primary">Create User</button>
                           </div>
                           <?php
@@ -278,7 +278,7 @@
 
                           </div>
                           <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                               <button type="submit" class="btn btn-danger">Delete</button>
                           </div>
                           <?php
@@ -327,7 +327,7 @@
                               </div>
                           </div>
                           <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                               <button type="submit" class="btn btn-primary">Save changes</button>
                           </div>
                           <?php
@@ -372,7 +372,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
                 <?php
