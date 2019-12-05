@@ -22,7 +22,7 @@ input:focus{
   outline: none;
   border-bottom: 2px solid white;
 }
-button {
+button:not(.swal-button.swal-button--confirm) {
   margin: 20px;
   font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
   font-size: 1em;
@@ -79,4 +79,13 @@ form {
   letter-spacing: 10px;
   font-size: 1.5em;
   color: azure
+}
+.row>.col-xs-4>button, form>.row{
+  margin: 10px 0 0;
+  background-color: transparent;
+}
+.row>.col-xs-4, .login-box-body>.row
+{
+  width: 100%;
+  margin: 0;
 }

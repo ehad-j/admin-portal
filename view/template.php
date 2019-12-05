@@ -2,16 +2,19 @@
 session_start();
 ?>
 
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Admin Portal</title>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <?php
-if (isset($_SESSION["beginSession"])&&$_SESSION["beginSession"] == "ok"){
-    echo "<h4>Logged in \r\n</h4>";
-    echo ' ';
-    if (isset($_SESSION["roles_id"]) && $_SESSION["roles_id"]=="2"){
-        echo "<h4>\r\n Super Admin</h4><br>";
-        echo '<a href=../userdata.php>View/Add/Edit Users</a><br>';
-        echo '<a href=../roledata.php>View/Add/Edit Roles</a>';
-    }
+if (isset($_SESSION["beginSession"])&&$_SESSION["beginSession"] == "ok"&&$_SESSION["roles_id"]!=NULL){
+    include "modules/home.php";
 }
 else{
     include "modules/login.php";
 }
+
+?>
+</head>
