@@ -77,7 +77,31 @@
       <?php
           }
           ?>
-
+        <style>
+            .btn-hov:hover{
+                color: rgba(255,255,255,.75) !important;
+            }
+            .btn-hov:focus{
+                box-shadow: none;
+            }
+            .btn-hov:focus, .btn-hov:not(:disabled):not(.disabled):active
+            ,.btn-hov:not(:disabled):not(.disabled):active:focus{
+                box-shadow: none;
+            }
+            #editmodal1 .form-group > input{
+                width: 55%;
+            }
+            #editmodal1 .modal-dialog{
+                margin-top: 6%;
+            }
+        </style>
+        <li class="nav-item">
+            <button style="background-color:transparent;border: none;color: rgba(255,255,255,.5);"
+                    class="btn btn-primary editbtn1 btn-hov" data-toggle="modal" data-target="#editmodal1">
+                <i class="fas fa-key"></i>
+                <span>Change Password</span>
+            </button>
+        </li>
     </ul>
     <div id="content-wrapper">
 
@@ -223,6 +247,116 @@
     </div>
   </div>
 </body>
+<div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form role="form" method="POST">
+                <div class="form-group">
+                    <label for="oldPassword">Old Password</label>
+                    <input type="password" class="form-control" name="oldPassword" id="oldpass" required>
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="editPassword">New Password</label>
+                        <input type="password" class="form-control" name="editPassword" id="editpass" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="editPasswordConf">Confirm New Password</label>
+                        <input type="password" class="form-control" name="editPasswordConf" id="editpassConf" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+                <?php
+                $editPassword = new UserController();
+                $editPassword -> ctrChangePassword();
+                #$editLinks = new LinksController();
+                #$editLinks -> ctrEditLinks();
+                ?>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="editmodal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form role="form" method="POST">
+                <div class="form-group">
+                    <label for="oldPassword">Old Password</label>
+                    <input type="password" class="form-control" name="oldPassword" id="oldpass" required>
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="editPassword">New Password</label>
+                        <input type="password" class="form-control" name="editPassword" id="editpass" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="editPasswordConf">Confirm New Password</label>
+                        <input type="password" class="form-control" name="editPasswordConf" id="editpassConf" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+                <?php
+                $editPassword = new UserController();
+                $editPassword -> ctrChangePassword();
+                #$editLinks = new LinksController();
+                #$editLinks -> ctrEditLinks();
+                ?>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    var password = document.getElementById("editpass")
+        , confirm_password = document.getElementById("editpassConf");
+
+    function validatePassword(){
+        if(password.value != confirm_password.value){
+            confirm_password.setCustomValidity("New passwords don't Match");
+        } else{
+            confirm_password.setCustomValidity('');
+        }
+    }
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+</script>
+
+<script>
+    var password = document.getElementById("editpass")
+        , confirm_password = document.getElementById("editpassConf");
+
+    function validatePassword(){
+        if(password.value != confirm_password.value){
+            confirm_password.setCustomValidity("New passwords don't Match");
+        } else{
+            confirm_password.setCustomValidity('');
+        }
+    }
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+</script>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>

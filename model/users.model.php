@@ -11,7 +11,7 @@
                 return $stmt -> fetch();
             }
             else{
-                $stmt =  Connection::connector()->prepare("SELECT * FROM $table");
+                $stmt =  Connection::connector()->prepare("select email, users.roles_id, first_name, last_name, user_id, roles.roles_name from users,roles where users.roles_id = roles.roles_id ");
                 $stmt -> execute();
 
                 return $stmt -> fetchAll();
@@ -79,6 +79,22 @@
             $stmt = Connection::connector()->prepare("SELECT roles_name FROM roles WHERE roles_id = :roles_id");
             $stmt->bindParam(":roles_id", $data["roles_id"],PDO::PARAM_STR);
             return $stmt -> fetch();
+            $stmt -> close();
+            $stmt = null;
+        }
+        static public function mdlEditPassword($table, $data){
+            $stmt = Connection::connector()->prepare("UPDATE $table SET pass = :pass WHERE user_id = :user_id");
+            $stmt -> bindParam(":pass", $data["pass"], PDO::PARAM_STR);
+            $stmt -> bindParam(":user_id", $data["user_id"], PDO::PARAM_STR);
+            if($stmt -> execute()){
+
+                return "ok";
+
+            }else{
+
+                return "error";
+
+            }
             $stmt -> close();
             $stmt = null;
         }

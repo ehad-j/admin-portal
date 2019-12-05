@@ -11,7 +11,7 @@ class ModelLinks{
         else {
 
 
-            $stmt = Connection::connector()->prepare("SELECT * FROM $table");
+            $stmt = Connection::connector()->prepare("select link_id, link_url, link_name, links.roles_id, roles.roles_name from links, roles where links.roles_id = roles.roles_id");
             $stmt->execute();
             return $stmt->fetchAll();
         }

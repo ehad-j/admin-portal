@@ -74,7 +74,31 @@
       <?php
           }
           ?>
-
+        <style>
+            .btn-hov:hover{
+                color: rgba(255,255,255,.75) !important;
+            }
+            .btn-hov:focus, .btn-hov:not(:disabled):not(.disabled):active
+            ,.btn-hov:not(:disabled):not(.disabled):active:focus{
+                box-shadow: none !important;
+            }
+            #editmodal3 .form-group > input{
+                width: 55%;
+            }
+            #editmodal3 .modal-dialog{
+                margin-top: 6%;
+            }
+            #editmodal3 .form-group{
+                margin-top: 1rem;
+            }
+        </style>
+        <li class="nav-item">
+            <button style="background-color:transparent;border: none;color: rgba(255,255,255,.5);"
+                    class="btn btn-primary editbtn2 btn-hov" data-toggle="modal" data-target="#editmodal3">
+                <i class="fas fa-key"></i>
+                <span>Change Password</span>
+            </button>
+        </li>
     </ul>
     <div id="content-wrapper">
 
@@ -88,6 +112,7 @@
             <th>Last Name</th>
             <th>Email</th>
             <th>Role ID</th>
+            <th>Roles Name</th>
             <th>Edit</th>
           </tr>
           <?php
@@ -104,10 +129,13 @@
             <td><?php echo $value["last_name"]; ?></td>
             <td><?php echo $value["email"]; ?></td>
             <td><?php echo $value["roles_id"]; ?></td>
+            <td><?php echo $value["roles_name"]; ?></td>
             <td>
 
                 <i style='cursor: pointer; margin: 0 10px;' class='fas fa-edit editbtn' data-toggle="modal" data-target="#editmodal"></i>
                 <i style='cursor: pointer; margin: 0 10px;' class='fas fa-trash deletebtn' data-toggle="modal" data-target="#deletemodal"></i>
+                <i style='cursor: pointer; margin: 0 10px;' class='fas fa-key editbtn1' data-toggle="modal" data-target="#editmodal1"></i>
+
 
             </td>
           </tr>
@@ -261,10 +289,117 @@
                   </div>
               </div>
           </div>
+          <style>
+              #editmodal1 .form-group > input{
+                  width: 55%;
+              }
+              #editmodal1 .form-group {
+                  margin-top: 1rem;
+              }
+              #editmodal1 .modal-dialog{
+                  margin-top: 6%;
+              }
+          </style>
+          <div class="modal fade" id="editmodal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <form role="form" method="POST">
+                          <div class="form-group">
+                              <label for="oldPassword">User ID</label>
+                              <input type="number" class="form-control" name="UserID" id="user_id2" required readonly>
+                          </div>
+                          <div class="form-group">
+                              <div class="form-group">
+                                  <label for="editPassword">New Password</label>
+                                  <input type="password" class="form-control" name="editPassword" id="editpass" required>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <div class="form-group">
+                                  <label for="editPasswordConf">Confirm New Password</label>
+                                  <input type="password" class="form-control" name="editPasswordConf" id="editpassConf" required>
+                              </div>
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-primary">Save changes</button>
+                          </div>
+                          <?php
+                          $editPassword = new UserController();
+                          $editPassword -> ctrSuChangePassword();
+                          #$editLinks = new LinksController();
+                          #$editLinks -> ctrEditLinks();
+                          ?>
+                      </form>
+                  </div>
+              </div>
+          </div>
+
       </div>
     </div>
   </div>
 </body>
+<div class="modal fade" id="editmodal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form role="form" method="POST">
+                <div class="form-group">
+                    <label for="oldPassword">Old Password</label>
+                    <input type="password" class="form-control" name="oldPassword" id="oldpass" required>
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="editPassword">New Password</label>
+                        <input type="password" class="form-control" name="editPassword" id="editpass" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="editPasswordConf">Confirm New Password</label>
+                        <input type="password" class="form-control" name="editPasswordConf" id="editpassConf" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+                <?php
+                $editPassword = new UserController();
+                $editPassword -> ctrChangePassword();
+                #$editLinks = new LinksController();
+                #$editLinks -> ctrEditLinks();
+                ?>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    var password = document.getElementById("editpass")
+        , confirm_password = document.getElementById("editpassConf");
+
+    function validatePassword(){
+        if(password.value != confirm_password.value){
+            confirm_password.setCustomValidity("New passwords don't Match");
+        } else{
+            confirm_password.setCustomValidity('');
+        }
+    }
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+</script>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -290,6 +425,20 @@
       $('#roles_id').val(data[4]);
     });
   });
+</script>
+<script>
+    $(document).ready(function() {
+        $('.editbtn1').on('click', function() {
+            $('#editmodal1').modal('show');
+            $tr = $(this).closest('tr');
+            var data = $tr.children("td").map(function() {
+                return $(this).text();
+            }).get();
+
+            console.log(data);
+            $('#user_id2').val(data[0]);
+        });
+    });
 </script>
 <script>
     $(document).ready(function() {

@@ -1,3 +1,4 @@
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <?php
 class UserController{
     // Function to validate user when logging in
@@ -234,6 +235,137 @@ class UserController{
 
         }
     }
+    static public function ctrChangePassword(){
+        if(isset($_POST["oldPassword"])){
+            $table = "users";
+            $item = "user_id";
+            $value = $_SESSION["user_id"];
+            $response = ModelUsers::modShowUsers($table, $item, $value);
+            $oldPass = $_POST["oldPassword"];
+            if (password_verify($oldPass, $response["pass"])){
+                $newPass = password_hash($_POST["editPassword"], PASSWORD_DEFAULT);
+                $data = array(
+                    "pass" => $newPass,
+                    "user_id" => $value
+                );
+                $result = ModelUsers::mdlEditPassword($table, $data);
+                if ($result == "ok") {
+
+
+                    echo '<script>
+		swal({
+				type: "success",
+				title: "Password changed sucessfully!",
+				icon: "success",
+				showConfirmButton: true,
+				confirmButtonText: "Close",
+				closeOnConfirm: false
+
+				}).then(function(){
+				    window.location.href = window.location.href;
+				});
+
+
+		</script>';
+
+                }
+                else{
+                    echo '<script>
+		swal({
+				type: "error",
+				title: "Error, password could not be changed",
+				text: "Make sure your password input is valid",
+				icon: "error",
+				showConfirmButton: true,
+				confirmButtonText: "Close",
+				closeOnConfirm: false
+
+				}).then(function(){
+				    window.location.href=window.location.href;
+				});
+
+
+		</script>';
+                }
+
+            }
+            else{
+                echo '<script>
+		swal({
+				type: "error",
+				title: "Error, password could not be changed",
+				text: "Incorrect password",
+				icon: "error",
+				showConfirmButton: true,
+				confirmButtonText: "Close",
+				closeOnConfirm: false
+
+				}).then(function(){
+				    window.location.href=window.location.href;
+				});
+
+
+		</script>';
+            }
+        }
+
+    }
+    static public function ctrSuChangePassword(){
+        if(isset($_POST["editPassword"])){
+            $table = "users";
+            $item = "user_id";
+            $value = $_POST["UserID"];
+            $response = ModelUsers::modShowUsers($table, $item, $value);
+            $newPass = password_hash($_POST["editPassword"], PASSWORD_DEFAULT);
+            $data = array(
+                "pass" => $newPass,
+                "user_id" => $value
+                );
+            $result = ModelUsers::mdlEditPassword($table, $data);
+            if ($result == "ok") {
+
+
+                    echo '<script>
+		swal({
+				type: "success",
+				title: "Password changed sucessfully!",
+				icon: "success",
+				showConfirmButton: true,
+				confirmButtonText: "Close",
+				closeOnConfirm: false
+
+				}).then(function(){
+				    window.location.href = window.location.href;
+				});
+
+
+		</script>';
+
+                }
+                else{
+                    echo '<script>
+		swal({
+				type: "error",
+				title: "Error, password could not be changed",
+				text: "Make sure your password input is valid",
+				icon: "error",
+				showConfirmButton: true,
+				confirmButtonText: "Close",
+				closeOnConfirm: false
+
+				}).then(function(){
+				    window.location.href=window.location.href;
+				});
+
+
+		</script>';
+                }
+
+            }
+        }
+
+
+
 
 
 
