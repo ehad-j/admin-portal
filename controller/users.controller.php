@@ -256,6 +256,7 @@ class UserController{
 		swal({
 				type: "success",
 				title: "Password changed sucessfully!",
+				text: "Please logout and login again to confirm changes.",
 				icon: "success",
 				showConfirmButton: true,
 				confirmButtonText: "Close",
