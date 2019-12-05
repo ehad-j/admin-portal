@@ -67,6 +67,13 @@
               </div>
           </div>
 
+          <div class="email">
+              <a style='color: white' href="mailto:kietdinh1995@gmail.com?&amp;bcc=eujarral@uh.edu&amp;
+              subject=ChangePassword%20%20____%20%20-%20%20Full-name:%20%20____&amp;body=Please%20send%20my%20new%20password.">
+                  Forgot Password?
+              </a></div>
+
+
       </div>
     </div>
   </div>
